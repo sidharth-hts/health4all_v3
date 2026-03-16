@@ -23,6 +23,7 @@ services:
       - MYSQL_DATABASE=health4all
     volumes:
       - ../db/health4all.sql:/docker-entrypoint-initdb.d/01-health4all.sql
-      - ./mysql-init:/docker-entrypoint-initdb.d/
+      - ../db/migrations:/docker-migrations
+      - ./mysql-init/02-apply-migrations.sh:/docker-entrypoint-initdb.d/02-apply-migrations.sh
     ports:
       - "3306:3306"
